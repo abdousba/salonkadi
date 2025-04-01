@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>’«·Ê‰ «·Õ·«ﬁ… «·—Ã«·Ì</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #FFFACD, #FFFFFF);
+            min-height: 100vh;
+        }
+
+        /* «·‘⁄«— */
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 80px;
+            height: 80px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* «·ﬁ«∆„… «·Ã«‰»Ì… ·Ê”«∆· «· Ê«’· */
+        .social-sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            background: #555;
+        }
+
+        /* ﬁ«∆„… «·Œœ„«  */
+        .services-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 200px;
+        }
+
+        .service-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* ‰„Ê–Ã «·ÕÃ“ */
+        .booking-form {
+            padding: 100px 20%;
+            text-align: center;
+        }
+
+        input, select, button {
+            margin: 10px;
+            padding: 12px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #333;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        @media (max-width: 768px) {
+            .booking-form {
+                padding: 100px 10px;
+            }
+            
+            .services-sidebar {
+                display: none;
+            }
+            
+            .social-sidebar {
+                display: none;
+            }
+        }
+    </style>
+    <!-- —«»ÿ √ÌﬁÊ‰«  Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- «·‘⁄«— -->
+    <div class="logo">
+        <i class="fas fa-cut fa-2x" style="color: #FFFACD;"></i>
+    </div>
+
+    <!-- Ê”«∆· «· Ê«’· -->
+    <div class="social-sidebar">
+        <div class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+        </div>
+        <div class="social-icon">
+            <i class="fab fa-instagram"></i>
+        </div>
+        <div class="social-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </div>
+
+    <!-- «·Œœ„«  Ê«·√”⁄«— -->
+    <div class="services-sidebar">
+        <h3>«·Œœ„«  Ê«·√”⁄«—</h3>
+        <div class="service-item">
+            <h4>ﬁ’ «·‘⁄—</h4>
+            <p>50 —Ì«·</p>
+        </div>
+        <div class="service-item">
+            <h4>Õ·«ﬁ… «·–ﬁ‰</h4>
+            <p>30 —Ì«·</p>
+        </div>
+        <div class="service-item">
+            <h4>«· ’›Ì›</h4>
+            <p>20 —Ì«·</p>
+        </div>
+    </div>
+
+    <!-- ‰„Ê–Ã «·ÕÃ“ -->
+    <div class="booking-form">
+        <h2>ÕÃ“ „Ê⁄œ</h2>
+        <input type="text" placeholder="«·«”„ »«·ﬂ«„·">
+        <input type="tel" placeholder="—ﬁ„ «·ÃÊ«·">
+        <select>
+            <option value="">«Œ — «·Œœ„…</option>
+            <option value="1">ﬁ’ «·‘⁄—</option>
+            <option value="2">Õ·«ﬁ… «·–ﬁ‰</option>
+            <option value="3">«· ’›Ì›</option>
+        </select>
+        <input type="date">
+        <input type="time">
+        <button onclick="submitBooking()"> √ﬂÌœ «·ÕÃ“</button>
+    </div>
+
+    <script>
+        function submitBooking() {
+            // Ì„ﬂ‰ ≈÷«›… „‰ÿﬁ ≈—”«· «·»Ì«‰«  Â‰«
+            alert(' „ «” ·«„ ÕÃ“ﬂ »‰Ã«Õ° ”‰ Ê«’· „⁄ﬂ · √ﬂÌœ «·„Ê⁄œ!');
+            // Reset form
+            document.querySelectorAll('input, select').forEach(element => {
+                element.value = '';
+            });
+        }
+    </script>
+</body>
+</html>
