@@ -84,14 +84,6 @@
     .social a:hover {
       color: #007bff;
     }
-    .success-msg {
-      color: green;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 20px;
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -109,9 +101,7 @@
       <button type="submit" class="btn-main">تأكيد الحجز</button>
     </form>
 
-    <div class="success-msg" id="success-msg">✅ تم حجزك بنجاح! تم إرسال تأكيد إلى بريدك الإلكتروني.</div>
-
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..." allowfullscreen></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!..." allowfullscreen></iframe>
 
     <div class="social">
       <a href="https://wa.me/1234567890" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
@@ -122,7 +112,7 @@
   </div>
 
   <script>
-    const sheetURL = 'https://script.google.com/macros/s/AKfycbygW_CgM0xOMz6cE8MzTC8718OPS3nFtbpxSxUMT9vkZr74jF3pVVDsaKl6mpW8vDbv/exec';
+    const sheetURL = 'https://script.google.com/macros/s/AKfycbypdfNZNnfGQiuY31-1dSjtfOfD8JTXNuhdejvq8tU/dev';
 
     document.getElementById('booking-form').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -133,28 +123,24 @@
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value;
 
+      // إضافة المعاملات إلى الرابط
+      const urlWithParams = `${sheetURL}?date=${date}&time=${time}`;
+
       try {
-        const checkRes = await axios.get(`${sheetURL}?check=1&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`);
+        // تحقق إذا كان الموعد محجوزًا
+        const checkRes = await axios.get(urlWithParams);
 
         if (checkRes.data.booked) {
           document.getElementById('error-msg').textContent = '🚫 هذا الموعد محجوز بالفعل، الرجاء اختيار وقت آخر.';
           return;
         }
 
-        const formData = new URLSearchParams();
-        formData.append("name", name);
-        formData.append("email", email);
-        formData.append("phone", phone);
-        formData.append("date", date);
-        formData.append("time", time);
-
-        await axios.post(sheetURL, formData);
-
-        document.getElementById('success-msg').style.display = 'block';
+        // إرسال الحجز إلى السكربت
+        await axios.post(sheetURL, { name, email, phone, date, time });
+        alert('✅ تم حجزك بنجاح! تم إرسال تأكيد إلى بريدك الإلكتروني.');
         document.getElementById('booking-form').reset();
         document.getElementById('error-msg').textContent = '';
       } catch (error) {
-        console.error(error);
         document.getElementById('error-msg').textContent = 'حدث خطأ أثناء الحجز. حاول مرة أخرى.';
       }
     });
