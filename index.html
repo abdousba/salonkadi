@@ -84,6 +84,14 @@
     .social a:hover {
       color: #007bff;
     }
+    .success-msg {
+      color: green;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -101,7 +109,9 @@
       <button type="submit" class="btn-main">تأكيد الحجز</button>
     </form>
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!..." allowfullscreen></iframe>
+    <div class="success-msg" id="success-msg">✅ تم حجزك بنجاح! تم إرسال تأكيد إلى بريدك الإلكتروني.</div>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..." allowfullscreen></iframe>
 
     <div class="social">
       <a href="https://wa.me/1234567890" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
@@ -124,18 +134,27 @@
       const time = document.getElementById('time').value;
 
       try {
-        const checkRes = await axios.get(sheetURL + `?check=1&date=${date}&time=${time}`);
+        const checkRes = await axios.get(`${sheetURL}?check=1&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`);
 
         if (checkRes.data.booked) {
           document.getElementById('error-msg').textContent = '🚫 هذا الموعد محجوز بالفعل، الرجاء اختيار وقت آخر.';
           return;
         }
 
-        await axios.post(sheetURL, { name, email, phone, date, time });
-        alert('✅ تم حجزك بنجاح! تم إرسال تأكيد إلى بريدك الإلكتروني.');
+        const formData = new URLSearchParams();
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("phone", phone);
+        formData.append("date", date);
+        formData.append("time", time);
+
+        await axios.post(sheetURL, formData);
+
+        document.getElementById('success-msg').style.display = 'block';
         document.getElementById('booking-form').reset();
         document.getElementById('error-msg').textContent = '';
       } catch (error) {
+        console.error(error);
         document.getElementById('error-msg').textContent = 'حدث خطأ أثناء الحجز. حاول مرة أخرى.';
       }
     });
