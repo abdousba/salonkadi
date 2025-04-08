@@ -1,189 +1,144 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÕÇáæä ÇáÍáÇŞÉ ÇáÑÌÇáí</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(to bottom, #FFFACD, #FFFFFF);
-            min-height: 100vh;
-        }
-
-        /* ÇáÔÚÇÑ */
-        .logo {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            width: 80px;
-            height: 80px;
-            background: #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ÇáŞÇÆãÉ ÇáÌÇäÈíÉ áæÓÇÆá ÇáÊæÇÕá */
-        .social-sidebar {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .social-icon:hover {
-            background: #555;
-        }
-
-        /* ŞÇÆãÉ ÇáÎÏãÇÊ */
-        .services-sidebar {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 200px;
-        }
-
-        .service-item {
-            margin: 10px 0;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        /* äãæĞÌ ÇáÍÌÒ */
-        .booking-form {
-            padding: 100px 20%;
-            text-align: center;
-        }
-
-        input, select, button {
-            margin: 10px;
-            padding: 12px;
-            width: 80%;
-            max-width: 400px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        button {
-            background: #333;
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: #555;
-        }
-
-        @media (max-width: 768px) {
-            .booking-form {
-                padding: 100px 10px;
-            }
-            
-            .services-sidebar {
-                display: none;
-            }
-            
-            .social-sidebar {
-                display: none;
-            }
-        }
-    </style>
-    <!-- ÑÇÈØ ÃíŞæäÇÊ Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ø­Ø¬Ø² ØµØ§Ù„ÙˆÙ† Ø­Ù„Ø§Ù‚Ø©</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-aKaxsx2FEx7LFZTx2UDT1AxPG/EVRHEhFz+5UzPhtSaxwIv5n7kPCk2QoWZyXgF0KslDn4JAt2mRbYm1KyzXqw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(145deg, #e0e0e0, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      padding: 20px;
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .container:hover {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    h1 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .btn-main {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(to right, #007bff, #0056b3);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+    .btn-main:hover {
+      background: linear-gradient(to right, #0056b3, #004080);
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      height: 280px;
+      border: none;
+      margin-top: 30px;
+      border-radius: 12px;
+    }
+    .social {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .social a {
+      margin: 0 10px;
+      font-size: 26px;
+      color: #555;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+    .social a:hover {
+      color: #007bff;
+    }
+  </style>
 </head>
 <body>
-    <!-- ÇáÔÚÇÑ -->
-    <div class="logo">
-        <i class="fas fa-cut fa-2x" style="color: #FFFACD;"></i>
-    </div>
+  <div class="container">
+    <h1>âœ¨ Ù…Ø±Ø­Ø¨Ù‹Ø§ Ø¨Ùƒ ÙÙŠ ØµØ§Ù„ÙˆÙ† Ø§Ù„Ø£Ù†Ø§Ù‚Ø© Ø§Ù„Ø±Ø¬Ø§Ù„ÙŠ âœ¨</h1>
+    <button class="btn-main" onclick="document.getElementById('booking-form').scrollIntoView({behavior: 'smooth'})">Ø§Ø­Ø¬Ø² Ù…ÙƒØ§Ù†Ùƒ Ø§Ù„Ø¢Ù†</button>
 
-    <!-- æÓÇÆá ÇáÊæÇÕá -->
-    <div class="social-sidebar">
-        <div class="social-icon">
-            <i class="fab fa-facebook-f"></i>
-        </div>
-        <div class="social-icon">
-            <i class="fab fa-instagram"></i>
-        </div>
-        <div class="social-icon">
-            <i class="fab fa-whatsapp"></i>
-        </div>
-    </div>
+    <form id="booking-form">
+      <input type="text" id="name" placeholder="Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„" required>
+      <input type="email" id="email" placeholder="Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ" required>
+      <input type="tel" id="phone" placeholder="Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ" required>
+      <input type="date" id="date" required>
+      <input type="time" id="time" required>
+      <p class="error" id="error-msg"></p>
+      <button type="submit" class="btn-main">ØªØ£ÙƒÙŠØ¯ Ø§Ù„Ø­Ø¬Ø²</button>
+    </form>
 
-    <!-- ÇáÎÏãÇÊ æÇáÃÓÚÇÑ -->
-    <div class="services-sidebar">
-        <h3>ÇáÎÏãÇÊ æÇáÃÓÚÇÑ</h3>
-        <div class="service-item">
-            <h4>ŞÕ ÇáÔÚÑ</h4>
-            <p>50 ÑíÇá</p>
-        </div>
-        <div class="service-item">
-            <h4>ÍáÇŞÉ ÇáĞŞä</h4>
-            <p>30 ÑíÇá</p>
-        </div>
-        <div class="service-item">
-            <h4>ÇáÊÕİíİ</h4>
-            <p>20 ÑíÇá</p>
-        </div>
-    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!..." allowfullscreen></iframe>
 
-    <!-- äãæĞÌ ÇáÍÌÒ -->
-    <div class="booking-form">
-        <h2>ÍÌÒ ãæÚÏ</h2>
-        <input type="text" placeholder="ÇáÇÓã ÈÇáßÇãá">
-        <input type="tel" placeholder="ÑŞã ÇáÌæÇá">
-        <select>
-            <option value="">ÇÎÊÑ ÇáÎÏãÉ</option>
-            <option value="1">ŞÕ ÇáÔÚÑ</option>
-            <option value="2">ÍáÇŞÉ ÇáĞŞä</option>
-            <option value="3">ÇáÊÕİíİ</option>
-        </select>
-        <input type="date">
-        <input type="time">
-        <button onclick="submitBooking()">ÊÃßíÏ ÇáÍÌÒ</button>
+    <div class="social">
+      <a href="https://wa.me/1234567890" target="_blank" title="ÙˆØ§ØªØ³Ø§Ø¨"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://facebook.com/yourpage" target="_blank" title="ÙÙŠØ³Ø¨ÙˆÙƒ"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/yourprofile" target="_blank" title="Ø¥Ù†Ø³ØªØºØ±Ø§Ù…"><i class="fab fa-instagram"></i></a>
+      <a href="https://t.me/yourchannel" target="_blank" title="ØªÙŠÙ„ÙŠØºØ±Ø§Ù…"><i class="fab fa-telegram"></i></a>
     </div>
+  </div>
 
-    <script>
-        function submitBooking() {
-            // íãßä ÅÖÇİÉ ãäØŞ ÅÑÓÇá ÇáÈíÇäÇÊ åäÇ
-            alert('Êã ÇÓÊáÇã ÍÌÒß ÈäÌÇÍ¡ ÓäÊæÇÕá ãÚß áÊÃßíÏ ÇáãæÚÏ!');
-            // Reset form
-            document.querySelectorAll('input, select').forEach(element => {
-                element.value = '';
-            });
+  <script>
+    const sheetURL = 'https://script.google.com/macros/s/AKfycbygW_CgM0xOMz6cE8MzTC8718OPS3nFtbpxSxUMT9vkZr74jF3pVVDsaKl6mpW8vDbv/exec';
+
+    document.getElementById('booking-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      try {
+        const checkRes = await axios.get(sheetURL + `?check=1&date=${date}&time=${time}`);
+
+        if (checkRes.data.booked) {
+          document.getElementById('error-msg').textContent = 'ğŸš« Ù‡Ø°Ø§ Ø§Ù„Ù…ÙˆØ¹Ø¯ Ù…Ø­Ø¬ÙˆØ² Ø¨Ø§Ù„ÙØ¹Ù„ØŒ Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ø®ØªÙŠØ§Ø± ÙˆÙ‚Øª Ø¢Ø®Ø±.';
+          return;
         }
-    </script>
+
+        await axios.post(sheetURL, { name, email, phone, date, time });
+        alert('âœ… ØªÙ… Ø­Ø¬Ø²Ùƒ Ø¨Ù†Ø¬Ø§Ø­! ØªÙ… Ø¥Ø±Ø³Ø§Ù„ ØªØ£ÙƒÙŠØ¯ Ø¥Ù„Ù‰ Ø¨Ø±ÙŠØ¯Ùƒ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.');
+        document.getElementById('booking-form').reset();
+        document.getElementById('error-msg').textContent = '';
+      } catch (error) {
+        document.getElementById('error-msg').textContent = 'Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø§Ù„Ø­Ø¬Ø². Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰.';
+      }
+    });
+  </script>
 </body>
 </html>
