@@ -1,41 +1,201 @@
-<form id="booking-form">
-  <input type="text" name="name" placeholder="الاسم" required><br><br>
-  <input type="email" name="email" placeholder="البريد الإلكتروني" required><br><br>
-  <input type="tel" name="phone" placeholder="رقم الهاتف" required><br><br>
-  <input type="date" name="date" required><br><br>
-  <input type="time" name="time" required><br><br>
-  <button type="submit">إرسال</button>
-</form>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صالون الحلاقة قاضي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+    }
 
-<script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbws06zirgo_QliGMTrQC19bsXVKfk0p7uu4cqmlaFWpOR3wpoKZB8toxxT-VtD21dO9/exec'; // ضع هنا رابط السكربت الفعلي
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-  document.getElementById('booking-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+    .container h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
 
-    const form = e.target;
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      date: form.date.value,
-      time: form.time.value
-    };
+    .container form {
+      display: flex;
+      flex-direction: column;
+    }
 
-   fetch(scriptURL, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data),
-  mode: 'no-cors' 
-    })
-    .then(res => res.text())
-    .then(msg => {
-      alert("تم الإرسال بنجاح!");
-      form.reset();
-    })
-    .catch(err => {
-      console.error(err);
-      alert("حدث خطأ أثناء الإرسال!");
+    .container input[type="text"],
+    .container input[type="email"],
+    .container input[type="tel"],
+    .container input[type="date"],
+    .container input[type="time"] {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    .container button {
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .container button:hover {
+      background-color: #0056b3;
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+    }
+
+    .map {
+      width: 100%;
+      height: 300px;
+      border: none;
+      margin-top: 30px;
+    }
+
+    .container input::placeholder {
+      color: #888;
+    }
+
+    /* تنسيق أيقونات التواصل الاجتماعي */
+    .social-icons {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .social-icons a {
+      color: #333;
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #007BFF;
+    }
+
+    /* Media Query for smaller devices (phones) */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        max-width: 90%;
+      }
+
+      .container h1 {
+        font-size: 20px;
+      }
+
+      .container button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .social-icons a {
+        font-size: 20px;
+      }
+
+      .map {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo">
+      <img src="https://i.imgur.com/Xf7aUTp.png" alt="شعار مشط ومقص">
+    </div>
+    <h1>نموذج الحجز</h1>
+    <form id="booking-form">
+      <input type="text" name="name" placeholder="الاسم" required><br>
+      <input type="email" name="email" placeholder="البريد الإلكتروني" required><br>
+      <input type="tel" name="phone" placeholder="رقم الهاتف" required><br>
+      <input type="date" name="date" required><br>
+      <input type="time" name="time" required><br>
+      <button type="submit">إرسال</button>
+    </form>
+  </div>
+
+  <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.165899499494!2d31.255537315345805!3d30.047849181952158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5e7c44f45d17f%3A0xd7fc8c3e45b8a382!2sCairo!5e0!3m2!1sen!2seg!4v1688004624677!5m2!1sen!2seg" allowfullscreen=""></iframe>
+
+  <div class="social-icons">
+    <a href="https://www.facebook.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Facebook_Logo_2023.png/1024px-Facebook_Logo_2023.png" alt="فيسبوك" width="30" height="30">
+    </a>
+    <a href="https://twitter.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_as_of_2021.svg" alt="تويتر" width="30" height="30">
+    </a>
+    <a href="https://www.instagram.com" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="إنستغرام" width="30" height="30">
+    </a>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbws06zirgo_QliGMTrQC19bsXVKfk0p7uu4cqmlaFWpOR3wpoKZB8toxxT-VtD21dO9/exec';
+
+    document.getElementById('booking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        date: form.date.value,
+        time: form.time.value
+      };
+
+      fetch(scriptURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        mode: 'no-cors'
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert("تم الإرسال بنجاح!");
+        form.reset();
+      })
+      .catch(err => {
+        console.error(err);
+        alert("حدث خطأ أثناء الإرسال!");
+      });
     });
-  });
-</script>
+  </script>
+
+</body>
+</html>
