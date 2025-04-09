@@ -22,10 +22,11 @@
       time: form.time.value
     };
 
-    fetch(scriptURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+   fetch(scriptURL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data),
+  mode: 'no-cors' 
     })
     .then(res => res.text())
     .then(msg => {
